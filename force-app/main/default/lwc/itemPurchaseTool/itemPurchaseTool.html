@@ -1,0 +1,42 @@
+<template>
+    <lightning-card title="Item Purchase Tool">
+        <!-- Фильтр по категории -->
+        <lightning-combobox
+            name="categoryFilter"
+            label="Category"
+            value={selectedCategory}
+            options={categoryOptions}
+            onchange={handleCategoryChange}>
+        </lightning-combobox>
+
+        <!-- Поле поиска -->
+        <lightning-input
+            type="text"
+            label="Search by Name"
+            value={searchKey}
+            onchange={handleSearchChange}>
+        </lightning-input>
+
+        <!-- Список товаров -->
+        <lightning-datatable
+            key-field="Id"
+            data={items}
+            columns={columns}
+            onrowaction={handleAddToCart}>
+        </lightning-datatable>
+
+        <!-- Корзина -->
+        <h3 class="slds-m-top_medium">Cart</h3>
+        <lightning-datatable
+            key-field="Id"
+            data={cartItems}
+            columns={cartColumns}>
+        </lightning-datatable>
+
+        <lightning-button
+            label="Checkout"
+            onclick={handleCheckout}
+            class="slds-m-top_medium">
+        </lightning-button>
+    </lightning-card>
+</template>
